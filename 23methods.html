@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>methods</title>
+</head>
+<body>
+    <h1>methods</h1>
+    <hr>
+    <div id="app">
+        {{a}}
+        <p><button @click="add(2,$event)">add</button></p>
+        <!-- .native 调用构造器中的原始方法 -->
+        <div v-for="item in items">
+            <p>{{item}}</p>
+            <p><btn @click.native="add2(1)"></btn></p>
+        </div>
+        
+    </div>
+    <button onclick="app.add(3)">外部add</button>
+    
+    <script src="../assets/js/vue.js"></script>
+    <script>
+        var btn={
+            template:`<button>组件add</button>`
+        }
+        var app=new Vue({
+            el:'#app',
+            data:{
+                a:1,
+                items:[1,2,3]
+            },
+            components:{
+                btn:btn
+            },
+            methods:{
+                add:function(num,event){
+                    if(num!=''){
+                        this.a+=num
+                    }
+                },
+                add2:function(num,event){
+                    if(num!=''){
+                        // this.items[]+=num
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
